@@ -1,3 +1,4 @@
+using AwesomeGym.API.Extensions;
 using AwesomeGym.API.Filter;
 using AwesomeGym.Application.InputModels;
 using AwesomeGym.Application.Services;
@@ -28,12 +29,9 @@ namespace AwesomeGym.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUnidadeService, UnidadeService>();
-            
-            services.AddSingleton<IUnidadeRepository, UnidadeRepository>();
-
-            services.AddTransient<IValidator<UnidadeInputModel>, UnidadeInputModelValidator>();
-
+            services.AddApplication();
+            services.AddInfrastructure();
+            services.AddValidators();
             services.AddControllers();
 
             services
